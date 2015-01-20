@@ -25,30 +25,44 @@ Create an API resource:
 
     from crest import Resource
     api = Resource('http://example.com/api')
-    api.get()
-    # GET http://example.com/api
 
-Create resources within the API:
+    # GET http://example.com/api
+    api.get()
+
+Get a resource within the API:
 
     users = api.users
-    users.get()
-    # GET http://example.com/api/users
-    users[1].get()
-    # GET http://example.com/api/users/1
 
-Create a sub resource of `users`:
+    # GET http://example.com/api/users
+    users.get()
+
+    # GET http://example.com/api/users?name=russell
+    users.get(params={'name': 'russell'})
+
+    # POST http://example.com/api/users (payload: {"name": "russell"})
+    users.post(json={'name': 'russell'})
+
+    # GET http://example.com/api/users/1
+    users[1].get()
+
+    # PATCH http://example.com/api/users/1 (payload: {"name": "russell"})
+    users.patch(json={'name': 'russell'})
+
+Get a sub resource of `users`:
 
     operations = users[1].operations
-    operations.get()
+
     # GET http://example.com/api/users/1/operations
-    operations[1].get()
+    operations.get()
+
     # GET http://example.com/api/users/1/operations/1
+    operations[1].get()
 
 
 Thanks
 ------
 
-`Crest` is based on kennethreitz's [requests][1], and inspired by adnam's [resources][2]. Thank you guys!
+`Crest` is based on kennethreitz's [requests][1], and is inspired by adnam's [resources][2]. Thank you guys!
 
 
 [1]: https://github.com/kennethreitz/requests
