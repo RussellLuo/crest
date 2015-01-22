@@ -46,7 +46,7 @@ Get a resource within the API:
     users[1].get()
 
     # PATCH http://example.com/api/users/1 (payload: {"name": "russell"})
-    users.patch(json={'name': 'russell'})
+    users[1].patch(json={'name': 'russell'})
 
 Get a sub resource of `users`:
 
