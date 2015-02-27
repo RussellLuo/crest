@@ -6,9 +6,11 @@ import requests
 
 class Resource(object):
 
-    def __init__(self, uri):
+    client = requests.api
+
+    def __init__(self, uri, **kwargs):
         self._uri = uri
-        self._client = requests.api
+        self._kwargs = kwargs
 
     def __repr__(self):
         return '<Resource %s>' % self._uri
@@ -25,7 +27,8 @@ class Resource(object):
     __getattr__ = __getitem__
 
     def request(self, method, **kwargs):
-        return self._client.request(method, self._uri, **kwargs)
+        kwargs = dict(self._kwargs.items() + kwargs.items())
+        return self.client.request(method, self._uri, **kwargs)
 
     def get(self, **kwargs):
         return self.request('get', **kwargs)
