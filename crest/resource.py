@@ -22,7 +22,7 @@ class Resource(object):
 
     def __getitem__(self, key):
         uri = self._uri.rstrip('/')
-        return self.__class__('%s/%s' % (uri, key))
+        return self.__class__('%s/%s' % (uri, key), **self._kwargs)
 
     __getattr__ = __getitem__
 
