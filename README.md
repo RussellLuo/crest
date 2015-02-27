@@ -24,7 +24,12 @@ Getting Started
 Create an API resource:
 
     from crest import Resource
+
+    # a simple API
     api = Resource('http://example.com/api')
+
+    # an API required authentication
+    api = Resource('http://example.com/api', auth=('username', 'password'))
 
     # GET http://example.com/api
     api.get()
